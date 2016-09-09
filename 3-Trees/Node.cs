@@ -8,10 +8,10 @@ namespace ALGA
 {
     public class Node
     {
-        private int number;
+        public int number { get; private set; }
 
-        Node left;
-        Node right;
+        public Node left;
+        public Node right;
 
         public Node(int number)
         {

@@ -8,19 +8,19 @@ namespace ALGA
 {
     public class BinaryTree
     {
-        Node root;
+        public Node root;
 
         /**
-            * Inserts a number into the tree
-            */
+         * Inserts a number into the tree
+         */
         public void insert(int number)
         {
             throw new NotImplementedException();
         }
 
         /**
-            * Delete a number from the tree
-            */
+         * Delete a number from the tree
+         */
         public void delete(int number)
         {
             throw new NotImplementedException();
@@ -32,35 +32,35 @@ namespace ALGA
         }
 
         /**
-            * Returns the smallest value in the tree (or -1 if tree is empty)
-            */
+         * Returns the smallest value in the tree (or -1 if tree is empty)
+         */
         public int min()
         {
             throw new NotImplementedException();
         }
 
         /**
-            * Returns the largest value in the tree (or -1 if tree is empty)
-            */
+         * Returns the largest value in the tree (or -1 if tree is empty)
+         */
         public int max()
         {
             throw new NotImplementedException();
         }
 
         /**
-            * Returns how many levels deep the deepest level in the tree is
-            * (the empty tree is 0 levels deep, the tree with only one root node is 1 deep)
-            * @return
-            */
+         * Returns how many levels deep the deepest level in the tree is
+         * (the empty tree is 0 levels deep, the tree with only one root node is 1 deep)
+         * @return
+         */
         public int depth()
         {
             throw new NotImplementedException();
         }
 
         /**
-            * Returns the amount of nodes in the tree
-            * @return
-            */
+         * Returns the amount of nodes in the tree
+         * @return
+         */
         public int count()
         {
             throw new NotImplementedException();
