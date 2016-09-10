@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AST\Expression.cs" />
+    <Compile Include="AST\Number.cs" />
+    <Compile Include="AST\Operand.cs" />
     <Compile Include="BinaryTree.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
