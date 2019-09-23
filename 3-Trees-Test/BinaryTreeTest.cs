@@ -1,6 +1,9 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using ALGA;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ALGA_test
 {
@@ -53,7 +56,7 @@ namespace ALGA_test
             big_tree.root.right.right = new Node(16);
             big_tree.root.right.right.left = new Node(15);
         }
-
+        
         [Test]
         public void BinaryTreeInsert()
         {
@@ -82,17 +85,15 @@ namespace ALGA_test
             Assert.IsNull(only_root_tree.root);
 
             three_nodes_tree.delete(5);
-            if (three_nodes_tree.root.number == 7)
+            if(three_nodes_tree.root.number == 7)
             {
                 Assert.AreEqual(3, three_nodes_tree.root.left.number);
                 Assert.IsNull(three_nodes_tree.root.right);
-            }
-            else if (three_nodes_tree.root.number == 3)
+            } else if(three_nodes_tree.root.number == 3)
             {
                 Assert.AreEqual(7, three_nodes_tree.root.right.number);
                 Assert.IsNull(three_nodes_tree.root.left);
-            }
-            else
+            } else
             {
                 Assert.Fail();
             }
@@ -151,6 +152,37 @@ namespace ALGA_test
             Assert.AreEqual(1, only_root_tree.count());
             Assert.AreEqual(3, three_nodes_tree.count());
             Assert.AreEqual(8, big_tree.count());
+        }
+
+        [Test]
+        public void BinaryTreePrint()
+        {
+            Setup();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                three_nodes_tree.print();
+                string expected = "3 5 7";
+                Assert.AreEqual(expected, sw.ToString().TrimStart().TrimEnd().Replace(",",""));
+                StringBuilder sb = sw.GetStringBuilder();
+                sb.Remove(0, sb.Length);
+                big_tree.print();
+                expected = "1 3 5 7 10 13 15 16";
+                Assert.AreEqual(expected, Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim());
+            }
+        }
+
+        [Test]
+        public void BinaryTreePrintInRange()
+        {
+            Setup();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                big_tree.printInRange(5, 15);
+                string expected = "5 7 10 13 15";
+                Assert.AreEqual(expected, Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim());
+            }
         }
     }
 }
