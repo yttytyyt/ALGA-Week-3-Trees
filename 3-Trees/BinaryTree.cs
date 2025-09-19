@@ -15,7 +15,12 @@ namespace ALGA
          */
         public void insert(int number)
         {
-            throw new NotImplementedException();
+            if(root == null)
+            {
+                root = new Node(number);
+                return;
+            }
+            root.insert(number);
         }
 
         /**
@@ -23,12 +28,15 @@ namespace ALGA
          */
         public void delete(int number)
         {
-            throw new NotImplementedException();
+            if (root == null) return;
+            root = root.delete(number);
         }
 
         public bool exists(int number)
         {
-            throw new NotImplementedException();
+            if(root == null) return false;
+            return root.exists(number);
+
         }
 
         /**
@@ -36,7 +44,8 @@ namespace ALGA
          */
         public int min()
         {
-            throw new NotImplementedException();
+            if (root == null) return -1;
+            return root.min();
         }
 
         /**
@@ -44,7 +53,8 @@ namespace ALGA
          */
         public int max()
         {
-            throw new NotImplementedException();
+           if (root == null) return -1;
+           return root.max();
         }
 
         /**
@@ -54,7 +64,8 @@ namespace ALGA
          */
         public int depth()
         {
-            throw new NotImplementedException();
+            if (root == null) return 0;
+            return root.depth();
         }
 
         /**
@@ -63,17 +74,22 @@ namespace ALGA
          */
         public int count()
         {
-            throw new NotImplementedException();
+            if (root == null) return 0;
+            return root.count();
         }
 
         public void print()
         {
-            throw new NotImplementedException();
+            if (root == null) return;
+            List<int> sorted = root.sort();
+            Console.WriteLine(string.Join(", ", sorted));
         }
 
         public void printInRange(int min, int max)
         {
-            throw new NotImplementedException();
+            if (root == null) return;
+            List<int> inRange = root.sort().Where(x => x >= min && x <= max).ToList();
+            Console.WriteLine(string.Join(", ", inRange));
         }
     }
 }

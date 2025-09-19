@@ -23,13 +23,13 @@ namespace ALGA_test
         [Test]
         public void AbstractSyntaxTreeEvaluate()
         {
-            Assert.AreEqual(63, zeven_keer_vier_plus_vijf.evaluate());
+            Assert.That(zeven_keer_vier_plus_vijf.evaluate(), Is.EqualTo(63));
         }
 
         [Test]
         public void AbstractSyntaxTreeToString()
         {
-            Assert.AreEqual("((4+5)*7)", zeven_keer_vier_plus_vijf.ToString());
+            Assert.That(zeven_keer_vier_plus_vijf.ToString(), Is.EqualTo("((4+5)*7)"));
         }
     }
 }

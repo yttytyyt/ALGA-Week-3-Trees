@@ -61,19 +61,19 @@ namespace ALGA_test
         public void BinaryTreeInsert()
         {
             empty_tree.insert(3);
-            Assert.AreEqual(3, empty_tree.root.number);
-            Assert.IsNull(empty_tree.root.left);
-            Assert.IsNull(empty_tree.root.right);
+            Assert.That(empty_tree.root.number, Is.EqualTo(3));
+            Assert.That(empty_tree.root.left, Is.Null);
+            Assert.That(empty_tree.root.right, Is.Null);
 
             only_root_tree.insert(0);
             only_root_tree.insert(10);
-            Assert.AreEqual(0, only_root_tree.root.left.number);
-            Assert.AreEqual(10, only_root_tree.root.right.number);
+            Assert.That(only_root_tree.root.left.number, Is.EqualTo(0));
+            Assert.That(only_root_tree.root.right.number, Is.EqualTo(10));
 
             big_tree.insert(14);
             big_tree.insert(8);
-            Assert.AreEqual(8, big_tree.root.left.right.right.number);
-            Assert.AreEqual(14, big_tree.root.right.right.left.left.number);
+            Assert.That(big_tree.root.left.right.right.number, Is.EqualTo(8));
+            Assert.That(big_tree.root.right.right.left.left.number, Is.EqualTo(14));
         }
 
         [Test]
@@ -82,17 +82,17 @@ namespace ALGA_test
             empty_tree.delete(5);
 
             only_root_tree.delete(5);
-            Assert.IsNull(only_root_tree.root);
+            Assert.That(only_root_tree.root, Is.Null);
 
             three_nodes_tree.delete(5);
             if(three_nodes_tree.root.number == 7)
             {
-                Assert.AreEqual(3, three_nodes_tree.root.left.number);
-                Assert.IsNull(three_nodes_tree.root.right);
+                Assert.That(three_nodes_tree.root.left.number, Is.EqualTo(3));
+                Assert.That(three_nodes_tree.root.right, Is.Null);
             } else if(three_nodes_tree.root.number == 3)
             {
-                Assert.AreEqual(7, three_nodes_tree.root.right.number);
-                Assert.IsNull(three_nodes_tree.root.left);
+                Assert.That(three_nodes_tree.root.right.number, Is.EqualTo(7));
+                Assert.That(three_nodes_tree.root.left, Is.Null);
             } else
             {
                 Assert.Fail();
@@ -100,58 +100,58 @@ namespace ALGA_test
 
             big_tree.delete(7);
             big_tree.delete(16);
-            Assert.IsNull(big_tree.root.left.right);
-            Assert.AreEqual(15, big_tree.root.right.right.number);
+            Assert.That(big_tree.root.left.right, Is.Null);
+            Assert.That(big_tree.root.right.right.number, Is.EqualTo(15));
         }
 
         [Test]
         public void BinaryTreeExists()
         {
-            Assert.IsFalse(empty_tree.exists(6));
+            Assert.That(empty_tree.exists(6), Is.False);
 
-            Assert.IsFalse(only_root_tree.exists(7));
-            Assert.IsTrue(only_root_tree.exists(5));
+            Assert.That(only_root_tree.exists(7), Is.False);
+            Assert.That(only_root_tree.exists(5), Is.True);
 
-            Assert.IsFalse(big_tree.exists(14));
-            Assert.IsTrue(big_tree.exists(15));
-            Assert.IsTrue(big_tree.exists(16));
-            Assert.IsTrue(big_tree.exists(1));
+            Assert.That(big_tree.exists(14), Is.False);
+            Assert.That(big_tree.exists(15), Is.True);
+            Assert.That(big_tree.exists(16), Is.True);
+            Assert.That(big_tree.exists(1), Is.True);
         }
 
         [Test]
         public void BinaryTreeMin()
         {
-            Assert.AreEqual(-1, empty_tree.min());
-            Assert.AreEqual(5, only_root_tree.min());
-            Assert.AreEqual(3, three_nodes_tree.min());
-            Assert.AreEqual(1, big_tree.min());
+            Assert.That(empty_tree.min(), Is.EqualTo(-1));
+            Assert.That(only_root_tree.min(), Is.EqualTo(5));
+            Assert.That(three_nodes_tree.min(), Is.EqualTo(3));
+            Assert.That(big_tree.min(), Is.EqualTo(1));
         }
 
         [Test]
         public void BinaryTreeMax()
         {
-            Assert.AreEqual(-1, empty_tree.max());
-            Assert.AreEqual(5, only_root_tree.max());
-            Assert.AreEqual(7, three_nodes_tree.max());
-            Assert.AreEqual(16, big_tree.max());
+            Assert.That(empty_tree.max(), Is.EqualTo(-1));
+            Assert.That(only_root_tree.max(), Is.EqualTo(5));
+            Assert.That(three_nodes_tree.max(), Is.EqualTo(7));
+            Assert.That(big_tree.max(), Is.EqualTo(16));
         }
 
         [Test]
         public void BinaryTreeDepth()
         {
-            Assert.AreEqual(0, empty_tree.depth());
-            Assert.AreEqual(1, only_root_tree.depth());
-            Assert.AreEqual(2, three_nodes_tree.depth());
-            Assert.AreEqual(4, big_tree.depth());
+            Assert.That(empty_tree.depth(), Is.EqualTo(0));
+            Assert.That(only_root_tree.depth(), Is.EqualTo(1));
+            Assert.That(three_nodes_tree.depth(), Is.EqualTo(2));
+            Assert.That(big_tree.depth(), Is.EqualTo(4));
         }
 
         [Test]
         public void BinaryTreeCount()
         {
-            Assert.AreEqual(0, empty_tree.count());
-            Assert.AreEqual(1, only_root_tree.count());
-            Assert.AreEqual(3, three_nodes_tree.count());
-            Assert.AreEqual(8, big_tree.count());
+            Assert.That(empty_tree.count(), Is.EqualTo(0));
+            Assert.That(only_root_tree.count(), Is.EqualTo(1));
+            Assert.That(three_nodes_tree.count(), Is.EqualTo(3));
+            Assert.That(big_tree.count(), Is.EqualTo(8));
         }
 
         [Test]
@@ -163,12 +163,12 @@ namespace ALGA_test
                 Console.SetOut(sw);
                 three_nodes_tree.print();
                 string expected = "3 5 7";
-                Assert.AreEqual(expected, sw.ToString().TrimStart().TrimEnd().Replace(",",""));
+                Assert.That(sw.ToString().TrimStart().TrimEnd().Replace(",",""), Is.EqualTo(expected));
                 StringBuilder sb = sw.GetStringBuilder();
                 sb.Remove(0, sb.Length);
                 big_tree.print();
                 expected = "1 3 5 7 10 13 15 16";
-                Assert.AreEqual(expected, Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim());
+                Assert.That(Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim(), Is.EqualTo(expected));
             }
         }
 
@@ -181,7 +181,7 @@ namespace ALGA_test
                 Console.SetOut(sw);
                 big_tree.printInRange(5, 15);
                 string expected = "5 7 10 13 15";
-                Assert.AreEqual(expected, Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim());
+                Assert.That(Regex.Replace(sw.ToString(), "[^0-9]+", " ").Trim(), Is.EqualTo(expected));
             }
         }
     }
